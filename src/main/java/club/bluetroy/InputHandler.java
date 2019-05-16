@@ -1,6 +1,5 @@
 package club.bluetroy;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -9,8 +8,10 @@ import java.io.InputStream;
 public interface InputHandler {
     /**
      * handle input to string
+     *
      * @param inputStream inputStream
      * @return inputObject
+     * @throws Exception exception
      */
     Object handle(InputStream inputStream) throws Exception;
 }
