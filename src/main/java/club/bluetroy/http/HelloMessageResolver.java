@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * @author heyixin 2019-05-16 14:30.
  */
-public class HelloMessageResovler implements MessageResolver {
+public class HelloMessageResolver implements MessageResolver {
     @Override
     public Object resolve(Object input, IOHandler ioHandler) {
         HttpResponse httpResponse = new HttpResponse();
