@@ -1,6 +1,7 @@
 package club.bluetroy.http;
 
 import club.bluetroy.OutputHandler;
+import club.bluetroy.util.HttpResponseParser;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -15,14 +16,13 @@ public class HttpOutputHandler implements OutputHandler {
     @Override
     public void handle(Object input, OutputStream outputStream) {
         try {
-            String html = "<html>hello world</html>";
-            int length = html.getBytes().length;
-            String hello = "HTTP/1.1 200 OK\r\nContent-Type:text/html\r\nContent-Length:" + length + "\r\nConnection:Close" + "\r\n\r\n" + html;
-            outputStream.write(hello.getBytes(StandardCharsets.UTF_8));
-            log.info("http response:\r\n{}", hello);
+            HttpResponse httpResponse = (HttpResponse) input;
+            String responseString = HttpResponseParser.parseHttpResponse(httpResponse);
+            outputStream.write(responseString.getBytes(StandardCharsets.UTF_8));
+            log.info("http response:\r\n{}", responseString);
             outputStream.flush();
         } catch (IOException e) {
-            log.warn("http out put handler exception",e);
+            log.warn("http out put handler exception", e);
         }
     }
 }
