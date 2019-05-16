@@ -4,6 +4,7 @@ import club.bluetroy.http.HttpResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * http response 解析器.
@@ -37,6 +38,6 @@ public class HttpResponseParser {
     }
 
     private void parseContent(HttpResponse httpResponse, StringBuilder stringBuilder) {
-        stringBuilder.append(httpResponse.getContent());
+        Optional.ofNullable(httpResponse.getContent()).ifPresent(stringBuilder::append);
     }
 }
