@@ -17,7 +17,12 @@ public class Server {
     private ServerSocket serverSocket;
 
     public Server(int port) {
-        this.port = port;
+        try {
+            this.port = port;
+            serverSocket = new ServerSocket(port);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void start() {

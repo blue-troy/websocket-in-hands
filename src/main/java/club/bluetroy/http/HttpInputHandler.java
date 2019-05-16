@@ -22,12 +22,11 @@ public class HttpInputHandler implements InputHandler {
     }
 
     private String getRequestString(InputStream inputStream) throws IOException, InterruptedException {
-        try (BufferedInputStream in = new BufferedInputStream(inputStream)) {
-            //暂时使用这种等待的方式等待Input可读
-            TimeUnit.SECONDS.sleep(1);
-            String inputHttp = new String(in.readAllBytes(), Charset.forName("utf-8"));
-            log.info("http input:{}", inputHttp);
-            return inputHttp;
-        }
+        BufferedInputStream in = new BufferedInputStream(inputStream);
+        //暂时使用这种等待的方式等待Input可读
+        TimeUnit.SECONDS.sleep(1);
+        String inputHttp = new String(in.readNBytes(in.available()), Charset.forName("utf-8"));
+        log.info("http input:{}", inputHttp);
+        return inputHttp;
     }
 }

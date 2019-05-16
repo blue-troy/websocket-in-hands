@@ -33,7 +33,7 @@ public class HttpResponseParser {
     private void parseHead(HttpResponse httpResponse, StringBuilder stringBuilder) {
         Map<String, String> head = httpResponse.getHead();
         head.forEach((k, v) -> stringBuilder.append(k).append(":").append(v).append("\r\n"));
-        stringBuilder.append("\r\n\r\n");
+        stringBuilder.append("\r\n");
     }
 
     private void parseContent(HttpResponse httpResponse, StringBuilder stringBuilder) {

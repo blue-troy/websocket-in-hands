@@ -18,8 +18,8 @@ public class HttpOutputHandler implements OutputHandler {
         try {
             HttpResponse httpResponse = (HttpResponse) input;
             String responseString = HttpResponseParser.parseHttpResponse(httpResponse);
-            outputStream.write(responseString.getBytes(StandardCharsets.UTF_8));
             log.info("http response:\r\n{}", responseString);
+            outputStream.write(responseString.getBytes(StandardCharsets.UTF_8));
             outputStream.flush();
         } catch (IOException e) {
             log.warn("http out put handler exception", e);

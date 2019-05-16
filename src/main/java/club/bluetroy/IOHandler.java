@@ -1,5 +1,8 @@
 package club.bluetroy;
 
+import club.bluetroy.http.HelloMessageResovler;
+import club.bluetroy.http.HttpInputHandler;
+import club.bluetroy.http.HttpOutputHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.InputStream;
@@ -10,9 +13,9 @@ import java.io.OutputStream;
  */
 @Slf4j
 public class IOHandler {
-    private InputHandler inputHandler;
-    private OutputHandler outputHandler;
-    private MessageResolver messageResolver;
+    private InputHandler inputHandler = new HttpInputHandler();
+    private OutputHandler outputHandler = new HttpOutputHandler();
+    private MessageResolver messageResolver = new HelloMessageResovler();
 
     public void handleIO(InputStream inputStream, OutputStream outputStream) {
         //todo 暂时采用捕获异常并打印的方式，应用中应当捕获异常并处理
