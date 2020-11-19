@@ -1,5 +1,6 @@
 package club.bluetroy;
 
+import club.bluetroy.http.HttpIOHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -30,11 +31,11 @@ public class Server {
             log.info("Server has started on 127.0.0.1:"+port+".\r\nWaiting for a connection...");
             while (true) {
                 Socket client = serverSocket.accept();
+                client.setKeepAlive(true);
                 try (InputStream inputStream = client.getInputStream();
                      OutputStream outputStream = client.getOutputStream()) {
-                    new IOHandler().handleIO(inputStream, outputStream);
+                    new HttpIOHandler().handleIO(inputStream, outputStream);
                 }
-                client.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
